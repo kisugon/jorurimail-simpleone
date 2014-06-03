@@ -1,0 +1,6 @@
+user = joruri
+password = joruri
+hosts = 127.0.0.1
+dbname = jorurimail
+query = select concat((select domain from sys_domains), '/', account, '/') AS maildir from sys_users where concat(account, '@', (select domain from sys_domains)) = '%s' AND state = 'enabled'
+

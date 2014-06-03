@@ -33,7 +33,8 @@ class Sys::Admin::Groups::ExportController < Sys::Controller::Admin::Base
   def export_groups
     csv = CSV.generate do |csv|
       csv << [:code, :parent_code, :state, :web_state, :level_no, :sort_no,
-        :layout_id, :ldap, :ldap_version, :name, :name_en, :tel, :outline_uri, :email]
+        #:layout_id, :ldap, :ldap_version, :name, :name_en, :tel, :outline_uri, :email]
+        :layout_id, :name, :name_en, :tel, :outline_uri, :email]
       all_groups.each do |group|
         row = []
         row << group.code
@@ -43,8 +44,8 @@ class Sys::Admin::Groups::ExportController < Sys::Controller::Admin::Base
         row << group.level_no
         row << group.sort_no
         row << group.layout_id
-        row << group.ldap
-        row << group.ldap_version
+        #row << group.ldap
+        #row << group.ldap_version
         row << group.name
         row << group.name_en
         row << group.tel
@@ -59,8 +60,9 @@ class Sys::Admin::Groups::ExportController < Sys::Controller::Admin::Base
 
   def export_users
     csv = CSV.generate do |csv|
-      csv << [:account, :state, :name, :name_en, :email, :auth_no, :password, :ldap, :ldap_version,
-        :group_code]
+      #csv << [:account, :state, :name, :name_en, :email, :auth_no, :password, :ldap, :ldap_version,
+      csv << [:account, :state, :name, :name_en, :email, :auth_no, :password,
+        :group_code, :quota, :aliases]
       Sys::User.find(:all, :order => :id).each do |user|
         next unless user.groups[0]
         row = []
@@ -71,9 +73,11 @@ class Sys::Admin::Groups::ExportController < Sys::Controller::Admin::Base
         row << user.email
         row << user.auth_no
         row << user.password
-        row << user.ldap
-        row << user.ldap_version
+        #row << user.ldap
+        #row << user.ldap_version
         row << user.groups[0].code
+        row << user.quota
+        row << user.aliases
         csv << row
       end
     end

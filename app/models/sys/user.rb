@@ -6,6 +6,9 @@ class Sys::User < Sys::ManageDatabase
   include Sys::Model::Rel::RoleName
   include Sys::Model::Auth::Manager
 
+  before_save :save_quota
+  after_find :load_email, :load_quota
+
   belongs_to :status,     :foreign_key => :state,
     :class_name => 'Sys::Base::Status'
   has_many   :group_rels, :foreign_key => :user_id,
@@ -293,7 +296,20 @@ class Sys::User < Sys::ManageDatabase
     end
     @previous_login_date = list[1].login_at  
   end
-  
+
+  def save_quota
+    self.quota = Core.config['quota'] if self.quota.blank?
+    self.quota *= (1024 * 1024)
+  end
+
+  def load_quota
+    self.quota.blank? ? self.quota = 0 : self.quota /= (1024 * 1024)
+  end
+
+  def load_email
+    self.email = self.account + '@' + Core.config['mail_domain'] unless Core.config.nil?
+  end
+
 protected
   def password_required?
     password.blank?

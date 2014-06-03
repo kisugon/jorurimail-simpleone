@@ -9,6 +9,9 @@ Joruri::Application.routes.draw do
     namespace mod do
       scope :module => scp do
         ## admin
+        resources "domains",
+          :controller => "domains",
+          :path => "domains"
         resources "maintenances",
           :controller => "maintenances",
           :path => "maintenances"

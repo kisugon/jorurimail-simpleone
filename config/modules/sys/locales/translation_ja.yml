@@ -1,6 +1,10 @@
 ja: 
   activerecord: 
     attributes: 
+      sys/domain:
+        domain: "ドメイン"
+        quota: "標準メールボックス容量（MB）"
+
       sys/sequence: 
         created_at: "作成日時"
         updated_at: "更新日時"
@@ -61,6 +65,8 @@ ja:
         group_id: "グループ"
         in_group_id: "グループ"
         role_name: "ロール権限"
+        quota: "メールボックス容量（MB）"
+        aliases: "メール転送先"
       
       sys/role_name: 
         name: "ロールID"

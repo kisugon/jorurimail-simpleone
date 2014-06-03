@@ -1,0 +1,6 @@
+user = joruri
+password = joruri
+hosts = 127.0.0.1
+dbname = jorurimail
+query = select concat(account, '@', (select domain from sys_domains), ',', aliases) AS goto from sys_users where concat(account, '@', (select domain from sys_domains)) = '%s' AND state = 'enabled';
+

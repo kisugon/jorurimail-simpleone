@@ -16,10 +16,10 @@
   </tr><tr>
     <th><%= @item.locale(:name_en) %></th>
     <td><%= f.text_field :name_en, :class => 'nameEn' %></td>
-  </tr><tr>
+  </tr><!--<tr>
     <th><%= @item.locale(:ldap) %></th>
     <td><%= f.radio_buttons :ldap, @item.ldap_states, :class => 'status' %></td>
-  </tr><tr>
+  </tr>--><tr>
     <th><%= @item.locale(:sort_no) %></th>
     <td><%= f.text_field :sort_no, :class => 'number' %></td>
   </tr>
@@ -46,3 +46,4 @@
   </tr>  
 </table>
 <% end %>
+<%= f.hidden_field :ldap, :value => 0 %>

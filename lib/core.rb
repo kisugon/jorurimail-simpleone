@@ -46,6 +46,10 @@ class Core
     
     #require 'page'
 ###    Page.initialize
+
+    domain_from_db = Sys::Domain.find(:first)
+    @@config['mail_domain'] = domain_from_db.domain unless domain_from_db.blank?
+    @@config['quota'] = domain_from_db.quota unless domain_from_db.blank?
   end
   
   ## Now.

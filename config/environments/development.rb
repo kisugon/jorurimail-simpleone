@@ -36,7 +36,7 @@ Joruri::Application.configure do
   
   # IMAP
   Joruri.config.imap_settings = {
-    :address        => '192.168.0.4',
+    :address        => 'localhost',
     :port           => 143,
     :usessl         => false
   }

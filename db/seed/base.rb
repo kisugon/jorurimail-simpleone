@@ -30,6 +30,10 @@ map_key    = Util::Config.load :core, :map_key
 
 ## ---------------------------------------------------------
 ## sys
+Sys::Domain.create({
+  :domain => 'demo.joruri.org',
+  :quota => '100'
+})
 
 Sys::Group.create({
   :parent_id => 0,
@@ -52,7 +56,9 @@ Sys::User.create({
   :password        => "admin",
   :mobile_access   => 1,
   :mobile_password => "admin",
-  :email           => "admin@demo.joruri.org"
+  :email           => nil,
+  :quota           => 0,
+  :aliases         => ""
 })
 
 Sys::UsersGroup.create({

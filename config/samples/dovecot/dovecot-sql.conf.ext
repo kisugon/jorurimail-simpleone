@@ -1,0 +1,5 @@
+driver = mysql
+default_pass_scheme = PLAIN
+connect = dbname=jorurimail user=joruri host=/var/lib/mysql/mysql.sock password=joruri
+password_query = SELECT password FROM sys_users WHERE account = '%u' AND state = 'enabled'
+user_query = SELECT concat('/home/joruri/', (select domain from sys_domains), '/', account, '/') as home, 5000 as uid, 5000 as gid FROM sys_users WHERE account = '%u' AND state = 'enabled'

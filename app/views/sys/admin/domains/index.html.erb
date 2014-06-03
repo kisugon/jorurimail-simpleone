@@ -1,0 +1,14 @@
+<%#= Core.config['mail_domain'] %>
+<table class="show">
+  <% if @item.present? %>
+    <tr>
+      <th><%= @item.locale(:domain) %></th>
+      <td><%= @item.domain %></td>
+    </tr><tr>
+      <th><%= @item.locale(:quota) %></th>
+      <td><%= @item.quota %></td>
+    </tr>
+  <% else %>
+    設定情報がありません
+  <% end %>
+</table>

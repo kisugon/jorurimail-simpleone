@@ -1,0 +1,5 @@
+user = joruri
+password = joruri
+hosts = 127.0.0.1
+dbname = jorurimail
+query = SELECT domain AS description FROM sys_domains WHERE domain='%u'

@@ -96,15 +96,17 @@ class Sys::Admin::Groups::ImportController < Sys::Controller::Admin::Base
 
       user = Sys::User.find_by_account(account) || Sys::User.new({:account => account})
       user.state        = data[:state]
-      user.ldap         = data[:ldap]
-      user.ldap_version = data[:ldap_version]
+      #user.ldap         = data[:ldap]
+      #user.ldap_version = data[:ldap_version]
       user.auth_no      = data[:auth_no]
       user.name         = data[:name]
       user.name_en      = data[:name_en]
       user.password     = data[:password]
-      user.email        = data[:email]
+      #user.email        = data[:email]
       user.in_group_id  = group.id if group.id != user.group_id
-      
+      user.quota        = data[:quota]
+      user.aliases      = data[:aliases]
+
       next unless user.changed?
       
       status = user.new_record? ? 0 : 1

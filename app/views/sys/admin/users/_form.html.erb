@@ -16,7 +16,7 @@
     <td><%= f.text_field :name_en, :class => 'nameEn' %></td>
   </tr><tr>
     <th><%= @item.locale(:email) %></th>
-    <td><%= f.text_field :email, :class => 'email' %></td>
+    <td><%= f.text_field :email, :class => 'email', :disabled => true %></td>
   </tr><tr>
     <th><%= @item.locale(:sort_no) %></th>
     <td><%= f.text_field :sort_no, :class => 'name' %></td>
@@ -35,16 +35,22 @@
   </tr><% if false %><tr>
     <th><%= @item.locale(:role_name) %></th>
     <td><%= render :partial => 'sys/admin/_partial/role_names/form', :locals => {:f => f, :item => @item} %></td>
-  </tr><% end %>
+  </tr><% end %><tr>
+    <th><%= @item.locale(:quota) %></th>
+    <td><%= f.text_field :quota, :class => 'name' %></td>
+  </tr><tr>
+    <th><%= @item.locale(:aliases) %></th>
+    <td><%= f.text_field :aliases, :class => 'email' %></td>
+  </tr>
 </table>
 
 <br />
 
 <table class="show">
-  <tr>
+  <!--<tr>
     <th><%= @item.locale(:ldap) %></th>
     <td><%= f.radio_buttons :ldap, @item.ldap_states, :class => 'status' %></td>
-  </tr><tr>
+  </tr>--><tr>
     <th><%= @item.locale(:password) %><br />※非同期時に使用</th>
     <td><%= f.text_field :password, :class => 'id' %></td>
   </tr><tr>
@@ -55,3 +61,4 @@
     <td><%= f.text_field :mobile_password, :class => 'mobilePassword' %></td>
   </tr>
 </table>
+<%= f.hidden_field :ldap, :value => 0 %>

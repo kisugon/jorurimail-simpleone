@@ -1,0 +1,9 @@
+<table class="show">
+  <tr>
+    <th><%= @item.locale(:domain) %></th>
+    <td><%= f.text_field :domain, :class => 'string domain', :style => 'width: 200px;' %></td>
+  </tr><tr>
+    <th><%= @item.locale(:quota) %></th>
+    <td><%= f.text_field :quota, :class => 'num quota' %></td>
+  </tr>
+</table>

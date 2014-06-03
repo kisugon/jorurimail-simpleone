@@ -1,3 +1,4 @@
+require "fileutils"
 # encoding: utf-8
 class Sys::Admin::UsersController < Sys::Controller::Admin::Base
   include Sys::Controller::Scaffold::Base
@@ -47,6 +48,7 @@ class Sys::Admin::UsersController < Sys::Controller::Admin::Base
   
   def destroy
     @item = Sys::User.new.find(params[:id])
+    FileUtils.rm_rf(File.expand_path('~') + '/' + Core.config['mail_domain'] + '/' + @item.account)
     _destroy(@item)
   end
 end
